@@ -1,6 +1,8 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 import ExploreProduct from '../ExploreProduct/ExploreProduct';
 import Navigation from '../Shared/Navigation/Navigation';
 
@@ -15,12 +17,16 @@ const Explore = () => {
     return (
         <div>
             <Navigation></Navigation>
-            {
-                products.map(product => <ExploreProduct
-                    key={product._id}
-                    product={product}
-                ></ExploreProduct>)
-            }
+            <Box style={{ margin: "50px" }} sx={{ flexGrow: 1 }}>
+                <Grid container spacing={2}>
+                    {
+                        products.map(product => <ExploreProduct
+                            key={product._id}
+                            product={product}
+                        ></ExploreProduct>)
+                    }
+                </Grid>
+            </Box>
         </div>
     );
 };
