@@ -10,8 +10,6 @@ const useFirebase = () => {
     const [user, setUser] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [authError, setAuthError] = useState('');
-    // const [admin, setAdmin] = useState(false);
-    // const [token, setToken] = useState('');
 
     const auth = getAuth();
 
@@ -22,9 +20,11 @@ const useFirebase = () => {
                 setAuthError('');
                 const newUser = { email, displayName: name };
                 setUser(newUser);
-                // save user to the database
-                // saveUser(email, name, 'POST');
-                // send name to firebase after creation
+
+                // save user to database
+                saveUser(email, name);
+
+                // send name to firebase after creat
                 updateProfile(auth.currentUser, {
                     displayName: name
                 }).then(() => {
@@ -67,11 +67,6 @@ const useFirebase = () => {
         return () => unsubscribed;
     }, [])
 
-    // useEffect(() => {
-    //     fetch(`http://localhost:5000/users/${user.email}`)
-    //         .then(res => res.json())
-    //         .then(data => setAdmin(data.admin))
-    // }, [user.email])
 
     const logout = () => {
         setIsLoading(true);
@@ -83,17 +78,17 @@ const useFirebase = () => {
             .finally(() => setIsLoading(false));
     }
 
-    // const saveUser = (email, displayName, method) => {
-    //     const user = { email, displayName };
-    //     fetch('http://localhost:5000/users', {
-    //         method: method,
-    //         headers: {
-    //             'content-type': 'application/json'
-    //         },
-    //         body: JSON.stringify(user)
-    //     })
-    //         .then()
-    // }
+    const saveUser = (email, displayName, method) => {
+        const user = { email, displayName };
+        fetch('https://secure-inlet-19520.herokuapp.com/users', {
+            method: 'post',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then()
+    }
 
     return {
         user,

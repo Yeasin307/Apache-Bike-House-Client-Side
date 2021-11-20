@@ -10,6 +10,7 @@ import Explore from './Pages/Explore/Explore';
 import Parchase from './Pages/Parchase/Parchase';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import NotFound from './Pages/NotFound/NotFound';
+import PrivateRoute from './Pages/Login/PrivateRoute/PrivateRoute';
 
 function App() {
   return (
@@ -23,15 +24,15 @@ function App() {
             <Route path="/home">
               <Home />
             </Route>
-            <Route path="/explore">
+            <Route exact path="/explore">
               <Explore />
             </Route>
-            <Route path="/parchase">
+            <PrivateRoute path="/explore/:_id">
               <Parchase />
-            </Route>
-            <Route path="/dashboard">
+            </PrivateRoute>
+            <PrivateRoute path="/dashboard">
               <Dashboard />
-            </Route>
+            </PrivateRoute>
             <Route path="/register">
               <Register />
             </Route>

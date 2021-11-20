@@ -4,7 +4,7 @@ import { Button, Paper } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 
 const ExploreProduct = (props) => {
-    const { name, img, description } = props.product;
+    const { name, img, description, _id } = props.product;
     const { feature1, feature2, feature3 } = description;
     return (
         <Grid item xs={12} md={6} sx={{ display: 'flex', justifyContent: 'center' }}>
@@ -17,7 +17,7 @@ const ExploreProduct = (props) => {
                     <li>{feature2}</li>
                     <li>{feature3}</li>
                 </ul>
-                <NavLink to="/parchase" style={{ textDecoration: 'none' }}>
+                <NavLink to={`/explore/${_id}`} style={{ textDecoration: 'none' }}>
                     <Button sx={{ bgcolor: 'warning.main', mb: 2 }} variant="contained">Buy Now</Button>
                 </NavLink>
             </Paper>
