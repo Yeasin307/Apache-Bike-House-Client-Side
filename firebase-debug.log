@@ -1,0 +1,44 @@
+[debug] [2021-11-20T12:22:47.993Z] ----------------------------------------------------------------------
+[debug] [2021-11-20T12:22:47.995Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\DCL\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2021-11-20T12:22:47.995Z] CLI Version:   9.23.0
+[debug] [2021-11-20T12:22:47.995Z] Platform:      win32
+[debug] [2021-11-20T12:22:47.995Z] Node Version:  v14.17.1
+[debug] [2021-11-20T12:22:47.999Z] Time:          Sat Nov 20 2021 18:22:47 GMT+0600 (Bangladesh Standard Time)
+[debug] [2021-11-20T12:22:47.999Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-11-20T12:22:48.052Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-11-20T12:22:48.053Z] > authorizing via signed-in user (yeasinhossen307@gmail.com)
+[debug] [2021-11-20T12:22:48.053Z] [iam] checking project apache-bike-house for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2021-11-20T12:22:48.055Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-11-20T12:22:48.055Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-11-20T12:22:49.459Z] <<< HTTP RESPONSE 200 {"expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Sat, 20 Nov 2021 12:22:46 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-11-20T12:22:49.469Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/apache-bike-house:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2021-11-20T12:22:50.300Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 20 Nov 2021 12:22:47 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=438","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-11-20T12:22:50.303Z] > refreshing access token with scopes: []
+[debug] [2021-11-20T12:22:50.303Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-11-20T12:22:50.711Z] <<< HTTP RESPONSE 200 {"pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Sat, 20 Nov 2021 12:22:47 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-11-20T12:22:50.724Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/apache-bike-house [none]
+[debug] [2021-11-20T12:22:51.303Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/apache-bike-house 200
+[debug] [2021-11-20T12:22:51.303Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/apache-bike-house {"projectId":"apache-bike-house","projectNumber":"1086628367015","displayName":"Apache Bike House","name":"projects/apache-bike-house","resources":{"hostingSite":"apache-bike-house"},"state":"ACTIVE"}
+[info] 
+[info] === Deploying to 'apache-bike-house'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2021-11-20T12:22:51.311Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-11-20T12:22:51.311Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-11-20T12:22:51.670Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Sat, 20 Nov 2021 12:22:48 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-11-20T12:22:51.682Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/apache-bike-house/versions  
+ {"config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2021-11-20T12:23:15.202Z] Error: socket hang up
+    at connResetException (internal/errors.js:628:14)
+    at TLSSocket.socketOnEnd (_http_client.js:499:23)
+    at TLSSocket.emit (events.js:387:35)
+    at TLSSocket.emit (domain.js:470:12)
+    at endReadableNT (internal/streams/readable.js:1317:12)
+    at processTicksAndRejections (internal/process/task_queues.js:82:21)
+[error] 
+[error] Error: Server Error. socket hang up
