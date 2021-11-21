@@ -11,7 +11,7 @@ const AllOrders = () => {
     const [orders, setOrders] = useState([]);
 
     useEffect(() => {
-        const url = "https://secure-inlet-19520.herokuapp.com/orders"
+        const url = "https://secure-inlet-19520.herokuapp.com/allorders"
         fetch(url)
             .then(res => res.json())
             .then(data => setOrders(data));
