@@ -6,6 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { Button } from '@mui/material';
 
 const AllOrders = () => {
     const [orders, setOrders] = useState([]);
@@ -16,6 +17,24 @@ const AllOrders = () => {
             .then(res => res.json())
             .then(data => setOrders(data));
     }, [])
+
+    const handleDeleting = id => {
+        const proceed = window.confirm('Are you confirm to delete?');
+        if (proceed) {
+            const uri = `https://secure-inlet-19520.herokuapp.com/cancelorders/${id}`;
+            fetch(uri, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount > 0) {
+                        alert('successfully Deleted');
+                        const remainingOrders = orders.filter(order => order._id !== id);
+                        setOrders(remainingOrders);
+                    }
+                })
+        }
+    }
 
     return (
         <div>
@@ -50,6 +69,9 @@ const AllOrders = () => {
                                 </TableCell>
                                 <TableCell align="center">
                                     {product.phone}
+                                </TableCell>
+                                <TableCell align="center">
+                                    <Button onClick={() => handleDeleting(product._id)} variant="contained">Delete</Button>
                                 </TableCell>
                             </TableRow>
                         ))}

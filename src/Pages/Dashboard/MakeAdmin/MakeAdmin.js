@@ -7,6 +7,7 @@ const MakeAdmin = () => {
 
     const handleOnBlur = e => {
         setEmail(e.target.value);
+        e.target.reset();
     }
     const handleAdminSubmit = e => {
         const user = { email };
@@ -21,7 +22,6 @@ const MakeAdmin = () => {
             .then(data => {
                 if (data.modifiedCount) {
                     setSuccess(true);
-                    e.target.reset();
                 }
             })
 

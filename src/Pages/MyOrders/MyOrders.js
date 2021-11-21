@@ -7,6 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import useAuth from '../../Hooks/useAuth';
+import { Button } from '@mui/material';
 
 const MyOrders = () => {
     const { user } = useAuth();
@@ -18,6 +19,25 @@ const MyOrders = () => {
             .then(res => res.json())
             .then(data => setOrders(data));
     }, [user.email])
+
+
+    const handleCanceling = id => {
+        const proceed = window.confirm('Are you confirm to cancel?');
+        if (proceed) {
+            const uri = `https://secure-inlet-19520.herokuapp.com/cancelorders/${id}`;
+            fetch(uri, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount > 0) {
+                        alert('successfully Canceled');
+                        const remainingOrders = orders.filter(order => order._id !== id);
+                        setOrders(remainingOrders);
+                    }
+                })
+        }
+    }
 
     return (
         <div>
@@ -35,6 +55,9 @@ const MyOrders = () => {
                             <TableCell align="center" sx={{ color: 'MidnightBlue', fontWeight: 700 }}>
                                 Phone Number
                             </TableCell>
+                            <TableCell align="center" sx={{ color: 'MidnightBlue', fontWeight: 700 }}>
+                                Status
+                            </TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody sx={{ m: 3 }}>
@@ -50,6 +73,9 @@ const MyOrders = () => {
                                 </TableCell>
                                 <TableCell align="center">
                                     {product.phone}
+                                </TableCell>
+                                <TableCell align="center">
+                                    <Button onClick={() => handleCanceling(product._id)} variant="contained">Cancel</Button>
                                 </TableCell>
                             </TableRow>
                         ))}
