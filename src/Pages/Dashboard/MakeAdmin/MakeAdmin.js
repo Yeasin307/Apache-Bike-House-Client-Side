@@ -21,6 +21,7 @@ const MakeAdmin = () => {
             .then(data => {
                 if (data.modifiedCount) {
                     setSuccess(true);
+                    e.target.reset();
                 }
             })
 
