@@ -10,6 +10,7 @@ const useFirebase = () => {
     const [user, setUser] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [authError, setAuthError] = useState('');
+    const [admin, setAdmin] = useState(false);
 
     const auth = getAuth();
 
@@ -65,7 +66,7 @@ const useFirebase = () => {
             setIsLoading(false);
         });
         return () => unsubscribed;
-    }, [])
+    }, [auth])
 
 
     const logout = () => {
@@ -77,6 +78,16 @@ const useFirebase = () => {
         })
             .finally(() => setIsLoading(false));
     }
+
+    // set admin
+
+    useEffect(() => {
+        fetch(`https://secure-inlet-19520.herokuapp.com/users/${user.email}`)
+            .then(res => res.json())
+            .then(data => setAdmin(data.admin))
+    }, [user.email])
+
+
 
     const saveUser = (email, displayName, method) => {
         const user = { email, displayName };
@@ -92,6 +103,7 @@ const useFirebase = () => {
 
     return {
         user,
+        admin,
         isLoading,
         authError,
         registerUser,

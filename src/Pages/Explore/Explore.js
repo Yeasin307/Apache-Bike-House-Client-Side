@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import ExploreProduct from '../ExploreProduct/ExploreProduct';
 import Navigation from '../Shared/Navigation/Navigation';
 import { Typography } from '@mui/material';
+import Footer from '../Shared/Footer/Footer';
 
 const Explore = () => {
     const [products, setProducts] = useState([]);
@@ -29,6 +30,7 @@ const Explore = () => {
                     }
                 </Grid>
             </Box>
+            <Footer></Footer>
         </div>
     );
 };

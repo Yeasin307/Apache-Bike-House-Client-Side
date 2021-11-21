@@ -6,22 +6,22 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import useAuth from '../../Hooks/useAuth';
 
-const MyOrders = () => {
-    const { user } = useAuth();
+const AllOrders = () => {
     const [orders, setOrders] = useState([]);
 
     useEffect(() => {
-        const url = `https://secure-inlet-19520.herokuapp.com/orders?email=${user.email}`
+        const url = "https://secure-inlet-19520.herokuapp.com/orders"
         fetch(url)
             .then(res => res.json())
             .then(data => setOrders(data));
-    }, [user.email])
+    }, [])
 
     return (
         <div>
-            <h2 style={{ color: 'MidnightBlue', textAlign: 'center' }}>Your Orders</h2>
+            <h2 style={{ color: 'MidnightBlue', textAlign: 'center' }}>
+                All Orders
+            </h2>
             <TableContainer component={Paper}>
                 <Table aria-label="Orders Table">
                     <TableHead>
@@ -60,4 +60,4 @@ const MyOrders = () => {
     );
 };
 
-export default MyOrders;
+export default AllOrders;

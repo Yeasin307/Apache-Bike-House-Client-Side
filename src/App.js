@@ -8,9 +8,9 @@ import Register from './Pages/Login/Register/Register';
 import Login from './Pages/Login/Login/Login';
 import Explore from './Pages/Explore/Explore';
 import Parchase from './Pages/Parchase/Parchase';
-import Dashboard from './Pages/Dashboard/Dashboard';
 import NotFound from './Pages/NotFound/NotFound';
 import PrivateRoute from './Pages/Login/PrivateRoute/PrivateRoute';
+import Dashboard from './Pages/Dashboard/Dashboard/Dashboard';
 
 function App() {
   return (

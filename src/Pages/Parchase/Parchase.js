@@ -1,27 +1,21 @@
-import { Button, TextField, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 import useAuth from '../../Hooks/useAuth';
 import Navigation from '../Shared/Navigation/Navigation';
 
 const Parchase = () => {
     const { user } = useAuth();
-    const [order, setOrder] = useState({});
     const { _id } = useParams();
     const [product, setProduct] = useState({});
     const history = useHistory();
+    const productRef = useRef();
+    const nameRef = useRef();
+    const emailRef = useRef();
+    const addressRef = useRef();
+    const phoneRef = useRef();
     const redirect_uri = '/dashboard';
-    console.log(product.name);
-
-
-    const handleOnBlur = e => {
-        const field = e.target.name;
-        const value = e.target.value;
-        const newOrder = { ...order };
-        newOrder[field] = value;
-        setOrder(newOrder);
-    }
 
     useEffect(() => {
         const uri = `https://secure-inlet-19520.herokuapp.com/explore/${_id}`
@@ -31,6 +25,14 @@ const Parchase = () => {
     }, [_id])
 
     const handleOrderSubmit = e => {
+        const product = productRef.current.value;
+        const name = nameRef.current.value;
+        const email = emailRef.current.value;
+        const address = addressRef.current.value;
+        const phone = phoneRef.current.value;
+        const order = { product, name, email, address, phone }
+
+        console.log(order);
 
         fetch('https://secure-inlet-19520.herokuapp.com/parchase', {
             method: 'post',
@@ -52,52 +54,48 @@ const Parchase = () => {
 
     return (
         <>
+
             <Navigation></Navigation>
+
             <Box sx={{ my: 10 }}>
-                <Typography sx={{ color: 'blue', fontWeight: 500 }} variant="h5" gutterBottom>Please Enter Your Information</Typography>
-                <form onSubmit={handleOrderSubmit}>
-                    <TextField
-                        sx={{ width: '50%', m: 1, pt: 3 }}
-                        label="Product Name"
-                        name="product"
-                        type="text"
-                        value={product?.name}
-                        onBlur={handleOnBlur}
-                        variant="standard" />
-                    <TextField
-                        sx={{ width: '50%', m: 1 }}
-                        label="Your Name"
-                        name="name"
-                        type="text"
-                        defaultValue={user?.displayName}
-                        onBlur={handleOnBlur}
-                        variant="standard" />
-                    <TextField
-                        sx={{ width: '50%', m: 1 }}
-                        label="Your Email"
-                        name="email"
-                        type="email"
-                        value={user?.email}
-                        onBlur={handleOnBlur}
-                        variant="standard" />
-                    <TextField
-                        sx={{ width: '50%', m: 1 }}
-                        label="Your Address"
-                        name="address"
-                        type="text"
-                        onBlur={handleOnBlur}
-                        variant="standard" />
-                    <TextField
-                        sx={{ width: '50%', m: 1 }}
-                        label="Your Phone Number"
-                        name="phone"
-                        type="number"
-                        onBlur={handleOnBlur}
-                        variant="standard" />
-                    <br />
-                    <Button sx={{ my: 5 }} type="submit" variant="contained">Submit</Button>
+
+                <Typography sx={{ color: 'blue', fontWeight: 500 }} variant="h5" gutterBottom>
+                    Please Enter Your Information
+                </Typography>
+
+                <form onSubmit={handleOrderSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }} >
+
+                    <label style={{ textAlign: 'start', display: 'block', width: '50%', fontSize: '20px', color: 'gray' }}>
+                        Product
+                        <input style={{ display: 'block', width: '100%', height: '30px', fontSize: '16px', margin: '10px 0px', padding: '5px' }} required ref={productRef} type="text" defaultValue={product?.name} />
+                    </label>
+
+                    <label style={{ textAlign: 'start', display: 'block', width: '50%', fontSize: '20px', color: 'gray' }}>
+                        Name
+                        <input style={{ display: 'block', width: '100%', height: '30px', fontSize: '16px', margin: '10px 0px', padding: '5px' }} required ref={nameRef} type="text" defaultValue={user?.displayName} />
+                    </label>
+
+                    <label style={{ textAlign: 'start', display: 'block', width: '50%', fontSize: '20px', color: 'gray' }}>
+                        Email
+                        <input style={{ display: 'block', width: '100%', height: '30px', fontSize: '16px', margin: '10px 0px', padding: '5px' }} required ref={emailRef} type="email" defaultValue={user?.email} />
+                    </label>
+
+                    <label style={{ textAlign: 'start', display: 'block', width: '50%', fontSize: '20px', color: 'gray' }}>
+                        Address
+                        <input style={{ display: 'block', width: '100%', height: '30px', fontSize: '16px', margin: '10px 0px', padding: '5px' }} required ref={addressRef} type="text" placeholder='Enter Your Address' />
+                    </label>
+
+                    <label style={{ textAlign: 'start', display: 'block', width: '50%', fontSize: '20px', color: 'gray' }}>
+                        Phone
+                        <input style={{ display: 'block', width: '100%', height: '30px', fontSize: '16px', margin: '10px 0px', padding: '5px' }} required ref={phoneRef} type="number" placeholder='Enter Your Phone number' />
+                    </label>
+
+                    <button style={{ color: 'black', backgroundColor: 'MediumSlateBlue', border: 'none', padding: '10px 20px', borderRadius: '5px', fontSize: '16px', fontWeight: 700 }} type="submit">Submit</button>
+
                 </form>
+
             </Box>
+
         </>
     );
 };
