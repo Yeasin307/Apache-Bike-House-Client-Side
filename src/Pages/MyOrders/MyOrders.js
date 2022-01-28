@@ -16,7 +16,7 @@ const MyOrders = () => {
     const history = useHistory();
 
     useEffect(() => {
-        const url = `http://localhost:5000/orders?email=${user.email}`
+        const url = `https://secure-inlet-19520.herokuapp.com/orders?email=${user.email}`
         fetch(url, {
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('idToken')}`
