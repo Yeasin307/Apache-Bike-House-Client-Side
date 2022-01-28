@@ -8,17 +8,31 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import useAuth from '../../Hooks/useAuth';
 import { Button } from '@mui/material';
+import { useHistory } from 'react-router-dom';
 
 const MyOrders = () => {
-    const { user } = useAuth();
+    const { user, logout } = useAuth();
     const [orders, setOrders] = useState([]);
+    const history = useHistory();
 
     useEffect(() => {
-        const url = `https://secure-inlet-19520.herokuapp.com/orders?email=${user.email}`
-        fetch(url)
-            .then(res => res.json())
+        const url = `http://localhost:5000/orders?email=${user.email}`
+        fetch(url, {
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('idToken')}`
+            }
+        })
+            .then(res => {
+                if (res.status === 200) {
+                    return res.json();
+                }
+                else if (res.status === 401) {
+                    logout();
+                    history.push('/login');
+                }
+            })
             .then(data => setOrders(data));
-    }, [user.email])
+    }, [history, logout, user.email])
 
 
     const handleCanceling = id => {
