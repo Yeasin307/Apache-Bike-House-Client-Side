@@ -11,6 +11,7 @@ const Parchase = () => {
     const [product, setProduct] = useState({});
     const history = useHistory();
     const productRef = useRef();
+    const priceRef = useRef();
     const nameRef = useRef();
     const emailRef = useRef();
     const addressRef = useRef();
@@ -26,11 +27,12 @@ const Parchase = () => {
 
     const handleOrderSubmit = e => {
         const product = productRef.current.value;
+        const price = priceRef.current.value;
         const name = nameRef.current.value;
         const email = emailRef.current.value;
         const address = addressRef.current.value;
         const phone = phoneRef.current.value;
-        const order = { product, name, email, address, phone }
+        const order = { product, price, name, email, address, phone }
 
         console.log(order);
 
@@ -67,7 +69,11 @@ const Parchase = () => {
 
                     <label style={{ textAlign: 'start', display: 'block', width: '50%', fontSize: '20px', color: 'gray' }}>
                         Product
-                        <input style={{ display: 'block', width: '100%', height: '30px', fontSize: '16px', margin: '10px 0px', padding: '5px' }} required ref={productRef} type="text" defaultValue={product?.name} />
+                        <input style={{ display: 'block', width: '100%', height: '30px', fontSize: '16px', margin: '10px 0px', padding: '5px' }} readonly="readonly" required ref={productRef} type="text" defaultValue={product?.name} />
+                    </label>
+                    <label style={{ textAlign: 'start', display: 'block', width: '50%', fontSize: '20px', color: 'gray' }}>
+                        Price
+                        <input style={{ display: 'block', width: '100%', height: '30px', fontSize: '16px', margin: '10px 0px', padding: '5px' }} readonly="readonly" required ref={priceRef} type="text" defaultValue={product?.price} />
                     </label>
 
                     <label style={{ textAlign: 'start', display: 'block', width: '50%', fontSize: '20px', color: 'gray' }}>
@@ -77,7 +83,7 @@ const Parchase = () => {
 
                     <label style={{ textAlign: 'start', display: 'block', width: '50%', fontSize: '20px', color: 'gray' }}>
                         Email
-                        <input style={{ display: 'block', width: '100%', height: '30px', fontSize: '16px', margin: '10px 0px', padding: '5px' }} required ref={emailRef} type="email" defaultValue={user?.email} />
+                        <input style={{ display: 'block', width: '100%', height: '30px', fontSize: '16px', margin: '10px 0px', padding: '5px' }} readonly="readonly" required ref={emailRef} type="email" defaultValue={user?.email} />
                     </label>
 
                     <label style={{ textAlign: 'start', display: 'block', width: '50%', fontSize: '20px', color: 'gray' }}>

@@ -14,7 +14,7 @@ const useFirebase = () => {
 
     const auth = getAuth();
 
-    const registerUser = (email, password, name, history) => {
+    const registerUser = (email, password, name, history, location) => {
         setIsLoading(true);
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
@@ -31,7 +31,8 @@ const useFirebase = () => {
                 }).then(() => {
                 }).catch((error) => {
                 });
-                history.replace('/');
+                const destination = location?.state?.from || '/';
+                history.replace(destination);
             })
             .catch((error) => {
                 setAuthError(error.message);
@@ -103,7 +104,6 @@ const useFirebase = () => {
             .then()
     }
 
-
     return {
         user,
         admin,
@@ -111,7 +111,7 @@ const useFirebase = () => {
         authError,
         registerUser,
         loginUser,
-        logout,
+        logout
     }
 }
 

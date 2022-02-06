@@ -8,7 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import useAuth from '../../Hooks/useAuth';
 import { Button } from '@mui/material';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const MyOrders = () => {
     const { user, logout } = useAuth();
@@ -70,7 +70,10 @@ const MyOrders = () => {
                                 Phone Number
                             </TableCell>
                             <TableCell align="center" sx={{ color: 'MidnightBlue', fontWeight: 700 }}>
-                                Status
+                                Payment Status
+                            </TableCell>
+                            <TableCell align="center" sx={{ color: 'MidnightBlue', fontWeight: 700 }}>
+                                Order Cancel
                             </TableCell>
                         </TableRow>
                     </TableHead>
@@ -87,6 +90,19 @@ const MyOrders = () => {
                                 </TableCell>
                                 <TableCell align="center">
                                     {product.phone}
+                                </TableCell>
+                                <TableCell align="center">
+                                    {
+                                        product.payment ?
+                                            "Paid"
+                                            :
+                                            <Link
+                                                style={{ textDecoration: 'none' }}
+                                                to={`/dashboard/payment/${product._id}`}
+                                            >
+                                                <Button variant="contained">Pay</Button>
+                                            </Link>
+                                    }
                                 </TableCell>
                                 <TableCell align="center">
                                     <Button onClick={() => handleCanceling(product._id)} variant="contained">Cancel</Button>

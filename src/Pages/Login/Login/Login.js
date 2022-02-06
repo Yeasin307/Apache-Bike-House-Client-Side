@@ -26,6 +26,7 @@ const Login = () => {
 
     return (
         <Container>
+            {isLoading && <CircularProgress />}
             <Grid container sx={{ display: 'flex', alignItems: 'center' }} spacing={2}>
                 <Grid item xs={12} md={6}>
                     <Typography sx={{ color: 'blue', fontWeight: 500 }} variant="h4" gutterBottom>Login</Typography>
@@ -50,7 +51,6 @@ const Login = () => {
                             to="/register">
                             <Button variant="text">New User? Please Register</Button>
                         </NavLink>
-                        {isLoading && <CircularProgress />}
                         {user?.email && <Alert severity="success">Login successfully!</Alert>}
                         {authError && <Alert severity="error">{authError}</Alert>}
                     </form>

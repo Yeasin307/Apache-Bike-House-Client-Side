@@ -7,16 +7,32 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Button } from '@mui/material';
+import useAuth from '../../Hooks/useAuth';
+import { useHistory } from 'react-router-dom';
 
 const AllOrders = () => {
+    const { user, logout } = useAuth();
     const [orders, setOrders] = useState([]);
+    const history = useHistory();
 
     useEffect(() => {
-        const url = "https://secure-inlet-19520.herokuapp.com/allorders"
-        fetch(url)
-            .then(res => res.json())
+        const url = `https://secure-inlet-19520.herokuapp.com/allorders?email=${user.email}`
+        fetch(url, {
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('idToken')}`
+            }
+        })
+            .then(res => {
+                if (res.status === 200) {
+                    return res.json();
+                }
+                else if (res.status === 401) {
+                    logout();
+                    history.push('/login');
+                }
+            })
             .then(data => setOrders(data));
-    }, [])
+    }, [history, logout, user.email])
 
     const handleDeleting = id => {
         const proceed = window.confirm('Are you confirm to delete?');

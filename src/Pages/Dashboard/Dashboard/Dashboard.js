@@ -29,8 +29,6 @@ function Dashboard(props) {
     let { path, url } = useRouteMatch();
     const { user, admin, logout } = useAuth();
 
-    console.log(admin);
-
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
@@ -56,11 +54,6 @@ function Dashboard(props) {
                 {
                     !admin && user && <Link style={{ textDecoration: 'none' }} to={`${url}/addreview`}>
                         <Button sx={{ width: '75%', marginTop: '10px' }} variant='contained'>Review</Button>
-                    </Link>
-                }
-                {
-                    !admin && user && <Link style={{ textDecoration: 'none' }} to={`${url}/pay`}>
-                        <Button sx={{ width: '75%', marginTop: '10px' }} variant='contained'>Pay</Button>
                     </Link>
                 }
                 {admin && <Box >
@@ -151,7 +144,7 @@ function Dashboard(props) {
                         <Route path={`${path}/addreview`}>
                             <AddReview></AddReview>
                         </Route>
-                        <Route path={`${path}/pay`}>
+                        <Route path={`${path}/payment/:productId`}>
                             <Pay></Pay>
                         </Route>
                         <AdminRoute path={`${path}/makeadmin`}>
