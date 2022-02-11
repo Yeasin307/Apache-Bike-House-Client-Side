@@ -2,7 +2,7 @@ import './App.css';
 import {
   BrowserRouter as Router, Switch, Route
 } from "react-router-dom";
-import AuthProvider from './Contexts/AuthProvider/AuthProvider';
+import AuthProvider from './Contexts/AuthProvider';
 import Home from './Pages/Home/Home/Home';
 import Register from './Pages/Login/Register/Register';
 import Login from './Pages/Login/Login/Login';

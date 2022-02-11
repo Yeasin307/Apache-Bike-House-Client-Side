@@ -12,7 +12,7 @@ const Pay = () => {
     const [order, setOrder] = useState({});
 
     useEffect(() => {
-        fetch(`https://secure-inlet-19520.herokuapp.com/orders/${productId}`)
+        fetch(`http://localhost:5000/orders/${productId}`)
             .then(res => res.json())
             .then(data => setOrder(data))
     }, [productId])
@@ -21,11 +21,11 @@ const Pay = () => {
         <div>
             <h3>Your Product is : {order.product}</h3>
             <h3>Your product price : {order.price}</h3>
-            <Elements stripe={stripePromise}>
+            {order?.price && <Elements stripe={stripePromise}>
                 <CheckoutForm
                     order={order}
                 />
-            </Elements>
+            </Elements>}
         </div>
     );
 };

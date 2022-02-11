@@ -28,7 +28,7 @@ const AddProducts = () => {
         }
         console.log(product);
 
-        fetch('https://secure-inlet-19520.herokuapp.com/product', {
+        fetch('http://localhost:5000/product', {
             method: 'post',
             headers: {
                 'content-type': 'application/json'
