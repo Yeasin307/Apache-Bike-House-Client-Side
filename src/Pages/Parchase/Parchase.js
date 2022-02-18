@@ -19,7 +19,7 @@ const Parchase = () => {
     const redirect_uri = '/dashboard';
 
     useEffect(() => {
-        const uri = `http://localhost:5000/explore/${_id}`
+        const uri = `https://secure-inlet-19520.herokuapp.com/explore/${_id}`
         fetch(uri)
             .then(res => res.json())
             .then(data => setProduct(data))
@@ -36,7 +36,7 @@ const Parchase = () => {
 
         console.log(order);
 
-        fetch('http://localhost:5000/parchase', {
+        fetch('https://secure-inlet-19520.herokuapp.com/parchase', {
             method: 'post',
             headers: {
                 'content-type': 'application/json'

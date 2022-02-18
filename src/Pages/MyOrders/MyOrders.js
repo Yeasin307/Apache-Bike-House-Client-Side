@@ -16,7 +16,7 @@ const MyOrders = () => {
     const history = useHistory();
 
     useEffect(() => {
-        const url = `http://localhost:5000/orders?email=${user.email}`
+        const url = `https://secure-inlet-19520.herokuapp.com/orders?email=${user.email}`
         fetch(url, {
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('idToken')}`
@@ -31,7 +31,6 @@ const MyOrders = () => {
                     history.push('/login');
                 }
             })
-            // .then(res => res.json())
             .then(data => setOrders(data));
     }, [history, logout, user.email])
 
@@ -39,7 +38,7 @@ const MyOrders = () => {
     const handleCanceling = id => {
         const proceed = window.confirm('Are you confirm to cancel?');
         if (proceed) {
-            const uri = `http://localhost:5000/cancelorders/${id}`;
+            const uri = `https://secure-inlet-19520.herokuapp.com/cancelorders/${id}`;
             fetch(uri, {
                 method: 'DELETE'
             })

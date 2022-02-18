@@ -10,7 +10,7 @@ const Products = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/explore')
+        fetch('https://secure-inlet-19520.herokuapp.com/explore')
             .then(res => res.json())
             .then(data => setProducts(data));
     }, [])

@@ -18,7 +18,7 @@ const AddReview = () => {
         const comment = commentRef.current.value;
         const review = { name, email, rating, comment };
 
-        fetch('http://localhost:5000/review', {
+        fetch('https://secure-inlet-19520.herokuapp.com/review', {
             method: 'post',
             headers: {
                 'content-type': 'application/json'

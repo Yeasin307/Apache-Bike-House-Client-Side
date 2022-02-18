@@ -9,7 +9,7 @@ const Product = (props) => {
     return (
         <Grid item xs={12} md={6} lg={4} sx={{ display: 'flex', justifyContent: 'center' }}>
             <Paper sx={{ width: '75%', p: 1 }} elevation={20} >
-                <img style={{ width: "100%", backgroundColor: 'lightgray', borderRadius: '5px 5px 0px 0px' }} src={img} alt="Apache Bike" />
+                <img style={{ width: "100%", backgroundColor: 'lightgray', borderRadius: '5px 5px 0px 0px' }} src={`data:image/png;base64,${img}`} alt="Bike Pic" />
                 <h4 style={{ color: "#334d4d", margin: '5px 0px' }}>{name}</h4>
                 <ul style={{ color: 'gray', marginLeft: "20px", textAlign: 'start' }}>
                     <p style={{ fontSize: '18px', margin: '5px 0px' }}>Key Features</p>

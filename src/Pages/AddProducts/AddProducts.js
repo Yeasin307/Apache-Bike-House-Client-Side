@@ -1,39 +1,36 @@
-import { Alert, Typography } from '@mui/material';
+import { Alert, Input, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useRef, useState } from 'react';
 
-
 const AddProducts = () => {
     const [success, setSuccess] = useState(false);
+    const [image, setImage] = useState(null);
     const nameRef = useRef();
     const feature1Ref = useRef();
     const feature2Ref = useRef();
     const feature3Ref = useRef();
-    const imageRef = useRef();
+    const priceRef = useRef();
 
     const handleProductAdd = e => {
+        e.preventDefault();
+
         const name = nameRef.current.value;
         const feature1 = feature1Ref.current.value;
         const feature2 = feature2Ref.current.value;
         const feature3 = feature3Ref.current.value;
-        const img = imageRef.current.value;
-        const product = {
-            name,
-            description: {
-                feature1,
-                feature2,
-                feature3
-            },
-            img
-        }
-        console.log(product);
+        const price = priceRef.current.value;
 
-        fetch('http://localhost:5000/product', {
-            method: 'post',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(product)
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('feature1', feature1);
+        formData.append('feature2', feature2);
+        formData.append('feature3', feature3);
+        formData.append('price', price);
+        formData.append('image', image);
+
+        fetch('https://secure-inlet-19520.herokuapp.com/product', {
+            method: 'POST',
+            body: formData
         })
             .then(res => res.json())
             .then(data => {
@@ -43,7 +40,6 @@ const AddProducts = () => {
                     e.target.reset();
                 }
             })
-        e.preventDefault();
     }
 
     return (
@@ -77,8 +73,13 @@ const AddProducts = () => {
                     </label>
 
                     <label style={{ textAlign: 'start', display: 'block', width: '50%', fontSize: '20px', color: 'gray' }}>
-                        Image URL
-                        <input style={{ display: 'block', width: '100%', height: '30px', fontSize: '16px', margin: '10px 0px', padding: '5px' }} required ref={imageRef} type="text" placeholder='Enter Image URL Size ( 500 * 300 )' />
+                        Price
+                        <input style={{ display: 'block', width: '100%', height: '30px', fontSize: '16px', margin: '10px 0px', padding: '5px' }} required ref={priceRef} type="number" placeholder='Enter Price' />
+                    </label>
+
+                    <label style={{ textAlign: 'start', display: 'block', width: '50%', fontSize: '20px', color: 'gray' }}>
+                        Product Image
+                        <Input style={{ width: '100%', height: '100%', fontSize: '16px', margin: '10px 0px', padding: '5px' }} required onChange={e => setImage(e.target.files[0])} accept="image/*" type="file" />
                     </label>
 
                     <button style={{ color: 'black', backgroundColor: 'MediumSlateBlue', border: 'none', padding: '10px 20px', borderRadius: '5px', fontSize: '16px', fontWeight: 700 }} type="submit">Submit</button>
