@@ -23,7 +23,7 @@ const useFirebase = () => {
                 setUser(newUser);
 
                 // save user to database
-                saveUser(email, name);
+                saveUser(email, name, 'post');
 
                 // send name to firebase after creat
                 updateProfile(auth.currentUser, {
@@ -91,11 +91,10 @@ const useFirebase = () => {
     }, [user.email])
 
 
-
     const saveUser = (email, displayName, method) => {
         const user = { email, displayName };
         fetch('https://secure-inlet-19520.herokuapp.com/users', {
-            method: 'post',
+            method: method,
             headers: {
                 'content-type': 'application/json'
             },

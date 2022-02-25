@@ -52,37 +52,37 @@ const AddProducts = () => {
 
                 <form onSubmit={handleProductAdd} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }} >
 
-                    <label style={{ textAlign: 'start', display: 'block', width: '50%', fontSize: '20px', color: 'gray' }}>
+                    <label style={styles.label}>
                         Product Name
-                        <input style={{ display: 'block', width: '100%', height: '30px', fontSize: '16px', margin: '10px 0px', padding: '5px' }} required ref={nameRef} type="text" placeholder='Enter Product Name' />
+                        <input style={styles.input} required ref={nameRef} type="text" placeholder='Enter Product Name' />
                     </label>
 
-                    <label style={{ textAlign: 'start', display: 'block', width: '50%', fontSize: '20px', color: 'gray' }}>
+                    <label style={styles.label}>
                         Feature 1
-                        <input style={{ display: 'block', width: '100%', height: '30px', fontSize: '16px', margin: '10px 0px', padding: '5px' }} required ref={feature1Ref} type="text" placeholder='Enter Feature 1' />
+                        <input style={styles.input} required ref={feature1Ref} type="text" placeholder='Enter Feature 1' />
                     </label>
 
-                    <label style={{ textAlign: 'start', display: 'block', width: '50%', fontSize: '20px', color: 'gray' }}>
+                    <label style={styles.label}>
                         Feature 2
-                        <input style={{ display: 'block', width: '100%', height: '30px', fontSize: '16px', margin: '10px 0px', padding: '5px' }} required ref={feature2Ref} type="text" placeholder='Enter Feature 2' />
+                        <input style={styles.input} required ref={feature2Ref} type="text" placeholder='Enter Feature 2' />
                     </label>
 
-                    <label style={{ textAlign: 'start', display: 'block', width: '50%', fontSize: '20px', color: 'gray' }}>
+                    <label style={styles.label}>
                         Feature 3
-                        <input style={{ display: 'block', width: '100%', height: '30px', fontSize: '16px', margin: '10px 0px', padding: '5px' }} required ref={feature3Ref} type="text" placeholder='Enter Feature 3' />
+                        <input style={styles.input} required ref={feature3Ref} type="text" placeholder='Enter Feature 3' />
                     </label>
 
-                    <label style={{ textAlign: 'start', display: 'block', width: '50%', fontSize: '20px', color: 'gray' }}>
+                    <label style={styles.label}>
                         Price
-                        <input style={{ display: 'block', width: '100%', height: '30px', fontSize: '16px', margin: '10px 0px', padding: '5px' }} required ref={priceRef} type="number" placeholder='Enter Price' />
+                        <input style={styles.input} required ref={priceRef} type="number" placeholder='Enter Price' />
                     </label>
 
-                    <label style={{ textAlign: 'start', display: 'block', width: '50%', fontSize: '20px', color: 'gray' }}>
+                    <label style={styles.label}>
                         Product Image
                         <Input style={{ width: '100%', height: '100%', fontSize: '16px', margin: '10px 0px', padding: '5px' }} required onChange={e => setImage(e.target.files[0])} accept="image/*" type="file" />
                     </label>
 
-                    <button style={{ color: 'black', backgroundColor: 'MediumSlateBlue', border: 'none', padding: '10px 20px', borderRadius: '5px', fontSize: '16px', fontWeight: 700 }} type="submit">Submit</button>
+                    <button style={styles.button} type="submit">Submit</button>
 
                 </form>
                 {success && <Alert severity="success">Product Added successfully!</Alert>}
@@ -92,3 +92,30 @@ const AddProducts = () => {
 };
 
 export default AddProducts;
+
+const styles = {
+    label: {
+        textAlign: 'start',
+        display: 'block',
+        width: '50%',
+        fontSize: '20px',
+        color: 'gray'
+    },
+    input: {
+        display: 'block',
+        width: '100%',
+        height: '30px',
+        fontSize: '16px',
+        margin: '10px 0px',
+        padding: '5px'
+    },
+    button: {
+        color: 'black',
+        backgroundColor: 'MediumSlateBlue',
+        border: 'none',
+        padding: '10px 20px',
+        borderRadius: '5px',
+        fontSize: '16px',
+        fontWeight: 700
+    }
+}

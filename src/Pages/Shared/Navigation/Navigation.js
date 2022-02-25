@@ -11,6 +11,13 @@ import useAuth from './../../../Hooks/useAuth';
 
 const Navigation = () => {
     const { user, logout } = useAuth();
+
+    const styles = {
+        navLink: {
+            textDecoration: 'none',
+            color: 'white'
+        }
+    }
     return (
         <Box sx={{ flexGrow: 1 }} >
             <AppBar position="fixed" style={{ backgroundColor: "ForestGreen", color: "black" }}>
@@ -32,20 +39,20 @@ const Navigation = () => {
                     {
                         user?.email ?
                             <Box>
-                                <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/dashboard">
+                                <NavLink style={styles.navLink} to="/dashboard">
                                     <Button color="inherit">Dashboard</Button>
                                 </NavLink>
-                                <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/explore">
+                                <NavLink style={styles.navLink} to="/explore">
                                     <Button color="inherit">Explore</Button>
                                 </NavLink>
                                 <Button style={{ color: 'white' }} onClick={logout} color="inherit">Logout</Button>
                             </Box>
                             :
                             <Box>
-                                <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/explore">
+                                <NavLink style={styles.navLink} to="/explore">
                                     <Button color="inherit">Explore</Button>
                                 </NavLink>
-                                <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/login">
+                                <NavLink style={styles.navLink} to="/login">
                                     <Button color="inherit">Login</Button>
                                 </NavLink>
                             </Box>

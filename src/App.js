@@ -6,11 +6,11 @@ import AuthProvider from './Contexts/AuthProvider';
 import Home from './Pages/Home/Home/Home';
 import Register from './Pages/Login/Register/Register';
 import Login from './Pages/Login/Login/Login';
-import Explore from './Pages/Explore/Explore';
 import Parchase from './Pages/Parchase/Parchase';
 import NotFound from './Pages/NotFound/NotFound';
 import PrivateRoute from './Pages/Login/PrivateRoute/PrivateRoute';
 import Dashboard from './Pages/Dashboard/Dashboard/Dashboard';
+import ExploreProducts from './Pages/ExploreProducts/ExploreProducts';
 
 function App() {
   return (
@@ -25,7 +25,7 @@ function App() {
               <Home />
             </Route>
             <Route exact path="/explore">
-              <Explore />
+              <ExploreProducts />
             </Route>
             <PrivateRoute path="/explore/:_id">
               <Parchase />

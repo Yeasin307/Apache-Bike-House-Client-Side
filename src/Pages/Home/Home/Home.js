@@ -3,15 +3,15 @@ import Footer from '../../Shared/Footer/Footer';
 import Navigation from '../../Shared/Navigation/Navigation';
 import AboutUs from '../AboutUs/AboutUs';
 import Banner from '../Banner/Banner';
-import Products from '../Products/Products';
 import Reviews from '../Reviews/Reviews';
+import TopProducts from '../TopProducts/TopProducts';
 
 const Home = () => {
     return (
         <div>
             <Navigation></Navigation>
             <Banner></Banner>
-            <Products></Products>
+            <TopProducts></TopProducts>
             <Reviews></Reviews>
             <AboutUs></AboutUs>
             <Footer></Footer>

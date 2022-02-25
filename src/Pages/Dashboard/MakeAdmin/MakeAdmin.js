@@ -7,10 +7,13 @@ const MakeAdmin = () => {
 
     const handleOnBlur = e => {
         setEmail(e.target.value);
-        e.target.reset();
     }
+
     const handleAdminSubmit = e => {
+
+        e.preventDefault()
         const user = { email };
+
         fetch('https://secure-inlet-19520.herokuapp.com/users/admin', {
             method: 'PUT',
             headers: {
@@ -24,8 +27,7 @@ const MakeAdmin = () => {
                     setSuccess(true);
                 }
             })
-
-        e.preventDefault()
+        e.target.reset();
     }
     return (
         <>

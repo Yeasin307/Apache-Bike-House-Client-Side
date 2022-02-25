@@ -67,36 +67,36 @@ const Parchase = () => {
 
                 <form onSubmit={handleOrderSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }} >
 
-                    <label style={{ textAlign: 'start', display: 'block', width: '50%', fontSize: '20px', color: 'gray' }}>
+                    <label style={styles.label}>
                         Product
-                        <input style={{ display: 'block', width: '100%', height: '30px', fontSize: '16px', margin: '10px 0px', padding: '5px' }} readonly="readonly" required ref={productRef} type="text" defaultValue={product?.name} />
+                        <input style={styles.input} readonly="readonly" required ref={productRef} type="text" defaultValue={product?.name} />
                     </label>
-                    <label style={{ textAlign: 'start', display: 'block', width: '50%', fontSize: '20px', color: 'gray' }}>
+                    <label style={styles.label}>
                         Price
-                        <input style={{ display: 'block', width: '100%', height: '30px', fontSize: '16px', margin: '10px 0px', padding: '5px' }} readonly="readonly" required ref={priceRef} type="text" defaultValue={product?.price} />
+                        <input style={styles.input} readonly="readonly" required ref={priceRef} type="text" defaultValue={product?.price} />
                     </label>
 
-                    <label style={{ textAlign: 'start', display: 'block', width: '50%', fontSize: '20px', color: 'gray' }}>
+                    <label style={styles.label}>
                         Name
-                        <input style={{ display: 'block', width: '100%', height: '30px', fontSize: '16px', margin: '10px 0px', padding: '5px' }} required ref={nameRef} type="text" defaultValue={user?.displayName} />
+                        <input style={styles.input} required ref={nameRef} type="text" defaultValue={user?.displayName} />
                     </label>
 
-                    <label style={{ textAlign: 'start', display: 'block', width: '50%', fontSize: '20px', color: 'gray' }}>
+                    <label style={styles.label}>
                         Email
-                        <input style={{ display: 'block', width: '100%', height: '30px', fontSize: '16px', margin: '10px 0px', padding: '5px' }} readonly="readonly" required ref={emailRef} type="email" defaultValue={user?.email} />
+                        <input style={styles.input} readonly="readonly" required ref={emailRef} type="email" defaultValue={user?.email} />
                     </label>
 
-                    <label style={{ textAlign: 'start', display: 'block', width: '50%', fontSize: '20px', color: 'gray' }}>
+                    <label style={styles.label}>
                         Address
-                        <input style={{ display: 'block', width: '100%', height: '30px', fontSize: '16px', margin: '10px 0px', padding: '5px' }} required ref={addressRef} type="text" placeholder='Enter Your Address' />
+                        <input style={styles.input} required ref={addressRef} type="text" placeholder='Enter Your Address' />
                     </label>
 
-                    <label style={{ textAlign: 'start', display: 'block', width: '50%', fontSize: '20px', color: 'gray' }}>
+                    <label style={styles.label}>
                         Phone
-                        <input style={{ display: 'block', width: '100%', height: '30px', fontSize: '16px', margin: '10px 0px', padding: '5px' }} required ref={phoneRef} type="number" placeholder='Enter Your Phone number' />
+                        <input style={styles.input} required ref={phoneRef} type="number" placeholder='Enter Your Phone number' />
                     </label>
 
-                    <button style={{ color: 'black', backgroundColor: 'MediumSlateBlue', border: 'none', padding: '10px 20px', borderRadius: '5px', fontSize: '16px', fontWeight: 700 }} type="submit">Submit</button>
+                    <button style={styles.button} type="submit">Submit</button>
 
                 </form>
 
@@ -107,3 +107,30 @@ const Parchase = () => {
 };
 
 export default Parchase;
+
+const styles = {
+    label: {
+        textAlign: 'start',
+        display: 'block',
+        width: '50%',
+        fontSize: '20px',
+        color: 'gray'
+    },
+    input: {
+        display: 'block',
+        width: '100%',
+        height: '30px',
+        fontSize: '16px',
+        margin: '10px 0px',
+        padding: '5px'
+    },
+    button: {
+        color: 'black',
+        backgroundColor: 'MediumSlateBlue',
+        border: 'none',
+        padding: '10px 20px',
+        borderRadius: '5px',
+        fontSize: '16px',
+        fontWeight: 700
+    }
+}

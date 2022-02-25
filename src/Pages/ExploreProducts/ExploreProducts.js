@@ -3,10 +3,12 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import ExploreProduct from '../ExploreProduct/ExploreProduct';
+import Navigation from '../Shared/Navigation/Navigation';
 import { Typography } from '@mui/material';
-import Product from '../Product/Product';
+import Footer from '../Shared/Footer/Footer';
 
-const Products = () => {
+const ExploreProducts = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
@@ -15,20 +17,22 @@ const Products = () => {
             .then(data => setProducts(data));
     }, [])
     return (
-        <Box>
-            <Typography style={{ color: 'MidnightBlue', fontWeight: 700 }} variant="h5">Explore Products</Typography>
+        <div>
+            <Navigation></Navigation>
+            <Typography variant="h5" sx={{ color: 'MidnightBlue', fontWeight: 700, mt: 10, mb: 3 }}>Explore All Products</Typography>
             <Box style={{ margin: "20px 50px" }} sx={{ flexGrow: 1 }}>
                 <Grid container spacing={2}>
                     {
-                        products.slice(1, 7).map(product => <Product
+                        products.map(product => <ExploreProduct
                             key={product._id}
                             product={product}
-                        ></Product>)
+                        ></ExploreProduct>)
                     }
                 </Grid>
             </Box>
-        </Box>
+            <Footer></Footer>
+        </div>
     );
 };
 
-export default Products;
+export default ExploreProducts;

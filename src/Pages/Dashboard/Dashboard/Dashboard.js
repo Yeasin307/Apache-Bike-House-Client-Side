@@ -13,13 +13,14 @@ import { Route, Switch, useRouteMatch } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Button } from '@mui/material';
 import useAuth from '../../../Hooks/useAuth';
-import AllOrders from '../../AllOrders/AllOrders';
-import MyOrders from '../../MyOrders/MyOrders';
+import AllOrders from '../../Dashboard/AllOrders/AllOrders';
+import MyOrders from '../../Dashboard/MyOrders/MyOrders';
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import AdminRoute from '../../Login/AdminRoute/AdminRoute';
-import AddProducts from '../../AddProducts/AddProducts';
-import AddReview from '../../AddReview/AddReview';
+import AddProducts from '../../Dashboard/AddProducts/AddProducts';
+import AddReview from '../../Dashboard/AddReview/AddReview';
 import Pay from '../../Pay/Pay';
+import ManageProducts from '../ManageProducts/ManageProducts';
 
 const drawerWidth = 200;
 
@@ -39,32 +40,37 @@ function Dashboard(props) {
             <Divider />
             <Box sx={{ display: 'flex', flexDirection: 'column', my: 3 }}>
                 <Link style={{ textDecoration: 'none', marginBottom: '10px' }} to={`${url}`}>
-                    <Button sx={{ width: '75%' }} variant='contained'>
+                    <Button sx={{ width: '95%' }} variant='contained'>
                         {
                             admin ? 'All Orders' : 'My Orders'
                         }
                     </Button>
                 </Link>
                 <Link style={{ textDecoration: 'none', marginBottom: '10px' }} to="/home">
-                    <Button sx={{ width: '75%' }} variant='contained'>Home</Button>
+                    <Button sx={{ width: '95%' }} variant='contained'>Home</Button>
                 </Link>
                 <Link style={{ textDecoration: 'none' }} to="/explore">
-                    <Button sx={{ width: '75%' }} variant='contained'>Explore</Button>
+                    <Button sx={{ width: '95%' }} variant='contained'>Explore</Button>
                 </Link>
                 {
                     !admin && user && <Link style={{ textDecoration: 'none' }} to={`${url}/addreview`}>
-                        <Button sx={{ width: '75%', marginTop: '10px' }} variant='contained'>Review</Button>
+                        <Button sx={{ width: '95%', marginTop: '10px' }} variant='contained'>Review</Button>
                     </Link>
                 }
                 {admin && <Box >
                     <Link style={{ textDecoration: 'none' }} to={`${url}/makeadmin`}>
-                        <Button sx={{ width: '75%', marginTop: '10px' }} variant='contained'>Make Admin</Button>
+                        <Button sx={{ width: '95%', marginTop: '10px' }} variant='contained'>Make Admin</Button>
+                    </Link>
+                    <Link style={{ textDecoration: 'none' }} to={`${url}/manageproducts`}>
+                        <Button sx={{ width: '95%', marginTop: '10px' }} variant='contained'>Manage Products</Button>
                     </Link>
                     <Link style={{ textDecoration: 'none' }} to={`${url}/addproduct`}>
-                        <Button sx={{ width: '75%', marginTop: '10px' }} variant='contained'>Add Products</Button>
+                        <Button sx={{ width: '95%', marginTop: '10px' }} variant='contained'>Add Products</Button>
                     </Link>
                 </Box>}
-                <Button sx={{ width: '75%', marginLeft: '25px', marginTop: '10px' }} onClick={logout} variant='contained'>Logout</Button>
+                <div>
+                    <Button sx={{ width: '95%', marginTop: '10px' }} onClick={logout} variant='contained'>Logout</Button>
+                </div>
             </Box>
         </div>
     );
@@ -149,6 +155,9 @@ function Dashboard(props) {
                         </Route>
                         <AdminRoute path={`${path}/makeadmin`}>
                             <MakeAdmin></MakeAdmin>
+                        </AdminRoute>
+                        <AdminRoute path={`${path}/manageproducts`}>
+                            <ManageProducts></ManageProducts>
                         </AdminRoute>
                         <AdminRoute path={`${path}/addproduct`}>
                             <AddProducts></AddProducts>
