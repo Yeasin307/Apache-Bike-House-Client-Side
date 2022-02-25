@@ -16,7 +16,7 @@ const TopProducts = () => {
     }, [])
     return (
         <Box>
-            <Typography style={{ color: 'MidnightBlue', fontWeight: 700 }} variant="h5">Explore Products</Typography>
+            <Typography style={{ color: 'MidnightBlue', fontWeight: 700 }} variant="h5">Top Products</Typography>
             <Box style={{ margin: "20px 50px" }} sx={{ flexGrow: 1 }}>
                 <Grid container spacing={2}>
                     {

@@ -60,7 +60,7 @@ const ManageProducts = () => {
                                     {product.price}
                                 </TableCell>
                                 <TableCell align="center">
-                                    <Button onClick={() => { handleDeleteProduct(product.id) }} variant="contained">Delete</Button>
+                                    <Button onClick={() => { handleDeleteProduct(product._id) }} variant="contained">Delete</Button>
                                 </TableCell>
                             </TableRow>
                         ))}
