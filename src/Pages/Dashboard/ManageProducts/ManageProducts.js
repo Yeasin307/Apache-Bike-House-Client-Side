@@ -44,7 +44,6 @@ const ManageProducts = () => {
                                 Price
                             </TableCell>
                             <TableCell align="center" sx={{ color: 'MidnightBlue', fontWeight: 700 }}>
-                                Delete Button
                             </TableCell>
                         </TableRow>
                     </TableHead>

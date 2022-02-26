@@ -71,6 +71,8 @@ const AllOrders = () => {
                             <TableCell align="center" sx={{ color: 'MidnightBlue', fontWeight: 700 }}>
                                 Phone Number
                             </TableCell>
+                            <TableCell align="center" sx={{ color: 'MidnightBlue', fontWeight: 700 }}>
+                            </TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody sx={{ m: 3 }}>

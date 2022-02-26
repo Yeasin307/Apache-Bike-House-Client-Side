@@ -1,4 +1,4 @@
-import { Alert, Typography } from '@mui/material';
+import { Alert, Input, Rating, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useRef, useState } from 'react';
 import useAuth from '../../../Hooks/useAuth';
@@ -6,34 +6,37 @@ import useAuth from '../../../Hooks/useAuth';
 const AddReview = () => {
     const { user } = useAuth();
     const [success, setSuccess] = useState(false);
+    const [image, setImage] = useState(null);
+    const [rating, setRating] = useState(null);
     const nameRef = useRef();
     const emailRef = useRef();
-    const ratingsRef = useRef();
     const commentRef = useRef();
 
     const handleProductAdd = e => {
+        e.preventDefault();
+
         const name = nameRef.current.value;
         const email = emailRef.current.value;
-        const rating = ratingsRef.current.value;
         const comment = commentRef.current.value;
-        const review = { name, email, rating, comment };
+
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('email', email);
+        formData.append('comment', comment);
+        formData.append('rating', rating);
+        formData.append('img', image);
 
         fetch('https://secure-inlet-19520.herokuapp.com/review', {
             method: 'post',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(review)
+            body: formData
         })
             .then(res => res.json())
             .then(data => {
                 if (data.insertedId) {
-                    alert('Review Successfully Added.')
                     setSuccess(true);
                     e.target.reset();
                 }
             })
-        e.preventDefault();
     }
 
     return (
@@ -57,13 +60,26 @@ const AddReview = () => {
                     </label>
 
                     <label style={styles.label}>
+                        Photo
+                        <Input style={{ width: '100%', height: '100%', fontSize: '16px', margin: '10px 0px', padding: '5px' }} required onChange={e => setImage(e.target.files[0])} accept="image/*" type="file" />
+                    </label>
+
+                    <label style={{ fontSize: '20px', color: 'gray', display: 'flex', flexDirection: 'column' }}>
                         Ratings
-                        <input style={styles.input} required ref={ratingsRef} type="text" placeholder='Enter Your Ratings out of 5' />
+                        <Rating
+                            name="simple-controlled"
+                            size='large'
+                            value={rating}
+                            precision={0.5}
+                            onChange={(e, newValue) => {
+                                setRating(newValue);
+                            }}
+                        />
                     </label>
 
                     <label style={styles.label}>
                         Comment
-                        <input style={styles.input} required ref={commentRef} type="text" placeholder='Enter Your Comment' />
+                        <textarea style={styles.input} required ref={commentRef} type="text" placeholder='Enter Your Comment' />
                     </label>
 
                     <button style={styles.button} type="submit">Submit</button>
@@ -88,7 +104,7 @@ const styles = {
     input: {
         display: 'block',
         width: '100%',
-        height: '30px',
+        height: '40px',
         fontSize: '16px',
         margin: '10px 0px',
         padding: '5px'

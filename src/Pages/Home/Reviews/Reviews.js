@@ -14,7 +14,7 @@ const Reviews = () => {
 
     return (
         <Box sx={{ mx: 12 }}>
-            <h2 style={{ color: 'midnightblue', margin: '30px 0px' }}>Review section</h2>
+            <h2 style={{ color: 'midnightblue', margin: '30px 0px' }}>Client Review</h2>
             <Grid container spacing={2}>
                 {
                     reviews.map(review => <Review
