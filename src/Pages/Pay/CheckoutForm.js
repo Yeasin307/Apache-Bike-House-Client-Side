@@ -2,6 +2,7 @@ import { CircularProgress } from '@mui/material';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
 
 const CheckoutForm = ({ order }) => {
@@ -10,8 +11,9 @@ const CheckoutForm = ({ order }) => {
 
     const stripe = useStripe();
     const elements = useElements();
+    const history = useHistory();
 
-    const [success, setSuccess] = useState('');
+    const [success, setSuccess] = useState(false);
     const [error, setError] = useState('');
     const [processing, setProcessing] = useState(false);
     const [clientSecret, setClientSecret] = useState('');
@@ -55,7 +57,6 @@ const CheckoutForm = ({ order }) => {
         }
         else {
             setError('');
-            console.log(paymentMethod);
         }
 
         //payment intent
@@ -79,8 +80,7 @@ const CheckoutForm = ({ order }) => {
         }
         else {
             setError('');
-            setSuccess('Your Payment Processed Successfully');
-            console.log(paymentIntent);
+            setSuccess(true);
             setProcessing(false);
 
             const payment = {
@@ -98,45 +98,48 @@ const CheckoutForm = ({ order }) => {
                 body: JSON.stringify(payment)
             })
                 .then(res => res.json())
-                .then(data => console.log(data))
+                .then(data => console.log(data));
+            alert("Your payment successfully proceeded");
+            history.replace('/dashboard');
         }
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <CardElement
-                    options={{
-                        style: {
-                            base: {
-                                fontSize: '16px',
-                                color: '#424770',
-                                '::placeholder': {
-                                    color: '#aab7c4',
+        <>
+            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '50px' }}>
+                <form style={{ width: '75%' }} onSubmit={handleSubmit}>
+                    <CardElement
+                        options={{
+                            style: {
+                                base: {
+                                    fontSize: '20px',
+                                    color: 'black',
+                                    '::placeholder': {
+                                        color: 'gray',
+                                    },
+                                },
+                                invalid: {
+                                    color: 'red',
                                 },
                             },
-                            invalid: {
-                                color: '#9e2146',
-                            },
-                        },
-                    }}
-                />
+                        }}
+                    />
 
-                {processing ?
-                    <CircularProgress></CircularProgress>
-                    :
-                    <button style={{ fontSize: '16px', fontWeight: 'bold', backgroundColor: 'yellow', padding: '5px 10px', borderRadius: '5px' }} type="submit" disabled={!stripe || success}>
-                        Pay
-                    </button>}
+                    {processing ?
+                        <CircularProgress></CircularProgress>
+                        :
+                        <button style={{ marginTop: '25px', color: 'white', fontSize: '18px', fontWeight: 'bold', backgroundColor: '#0060FF', padding: '7.5px 15px', border: 'none', borderRadius: '5px' }} type="submit" disabled={!stripe || success}>Pay
+                        </button>
+                    }
 
-            </form>
+                </form>
+            </div >
+
             {
                 error && <p style={{ color: 'red' }}>{error}</p>
             }
-            {
-                success && <p style={{ color: 'green' }}>{success}</p>
-            }
-        </div>
+        </>
+
     );
 };
 

@@ -18,15 +18,15 @@ const Pay = () => {
     }, [productId])
 
     return (
-        <div>
-            <h3>Your Product is : {order.product}</h3>
-            <h3>Your product price : {order.price}</h3>
+        <>
+            <h3 style={{ color: 'green', marginBottom: '5px' }}>Your Product: {order.product}</h3>
+            <h3 style={{ color: 'green', marginTop: '5px' }}>price: {order.price}</h3>
             {order?.price && <Elements stripe={stripePromise}>
                 <CheckoutForm
                     order={order}
                 />
             </Elements>}
-        </div>
+        </>
     );
 };
 
