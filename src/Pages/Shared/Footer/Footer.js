@@ -12,32 +12,30 @@ const Footer = () => {
             color: 'goldenrod',
             paddingBottom: '20px'
         },
-        h3: {
-            textAlign: 'start',
-            marginLeft: '90px'
+        contact: {
+            textAlign: 'center',
         },
-        p: {
-            textAlign: 'start',
-            margin: '5px 50px'
+        h3: {
+            marginTop: '45px'
         }
     }
     return (
         <Box style={styles.box}>
             <Grid container spacing={2}>
-                <Grid item xs={6}>
-                    <h3 style={styles.h3}>Contact Us</h3>
-                    <p style={styles.p}>New Market , Maijdi Court</p>
-                    <p style={styles.p}>Noakhali , Bangladesh</p>
-                    <p style={styles.p}>Contact Number: 01700000000</p>
-                </Grid>
-                <Grid item xs={6}>
-                    <h3>Join with us</h3>
+                <Grid item xs={12} sm={12} md={6} >
+                    <h3 style={styles.h3}>Join with us</h3>
                     <a href="http://facebook.com" target="_blank" rel="noopener noreferrer">
-                        <FontAwesomeIcon style={{ color: "blue", marginLeft: ' 25px' }} icon={faFacebook} size="2x" />
+                        <FontAwesomeIcon style={{ color: "blue", marginLeft: ' 2px' }} icon={faFacebook} size="2x" />
                     </a>
                     <a href="http://youtube.com" target="_blank" rel="noopener noreferrer">
                         <FontAwesomeIcon style={{ color: "red", marginLeft: '20px' }} icon={faYoutube} size="2x" />
                     </a>
+                </Grid>
+                <Grid item xs={12} sm={12} md={6}>
+                    <h3 style={styles.contact}>Contact Us</h3>
+                    <p style={styles.contact}>New Market , Maijdi Court</p>
+                    <p style={styles.contact}>Noakhali , Bangladesh</p>
+                    <p style={styles.contact}>Contact Number: 01700000000</p>
                 </Grid>
             </Grid>
         </Box>

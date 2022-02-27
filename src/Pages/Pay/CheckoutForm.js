@@ -106,29 +106,16 @@ const CheckoutForm = ({ order }) => {
 
     return (
         <>
-            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '50px' }}>
+            <div style={styles.div}>
                 <form style={{ width: '75%' }} onSubmit={handleSubmit}>
                     <CardElement
-                        options={{
-                            style: {
-                                base: {
-                                    fontSize: '20px',
-                                    color: 'black',
-                                    '::placeholder': {
-                                        color: 'gray',
-                                    },
-                                },
-                                invalid: {
-                                    color: 'red',
-                                },
-                            },
-                        }}
+                        options={styles.cardElement}
                     />
 
                     {processing ?
                         <CircularProgress></CircularProgress>
                         :
-                        <button style={{ marginTop: '25px', color: 'white', fontSize: '18px', fontWeight: 'bold', backgroundColor: '#0060FF', padding: '7.5px 15px', border: 'none', borderRadius: '5px' }} type="submit" disabled={!stripe || success}>Pay
+                        <button style={styles.button} type="submit" disabled={!stripe || success}>Pay
                         </button>
                     }
 
@@ -144,3 +131,35 @@ const CheckoutForm = ({ order }) => {
 };
 
 export default CheckoutForm;
+
+const styles = {
+    button: {
+        marginTop: '25px',
+        color: 'white',
+        fontSize: '18px',
+        fontWeight: 'bold',
+        backgroundColor: '#0060FF',
+        padding: '7.5px 15px',
+        border: 'none',
+        borderRadius: '5px'
+    },
+    div: {
+        display: 'flex',
+        justifyContent: 'center',
+        marginTop: '50px'
+    },
+    cardElement: {
+        style: {
+            base: {
+                fontSize: '20px',
+                color: 'black',
+                '::placeholder': {
+                    color: 'gray'
+                }
+            },
+            invalid: {
+                color: 'red',
+            }
+        }
+    }
+}

@@ -14,6 +14,7 @@ const AllOrders = () => {
     const { user, logout } = useAuth();
     const [orders, setOrders] = useState([]);
     const history = useHistory();
+    console.log(orders);
 
     useEffect(() => {
         const url = `https://secure-inlet-19520.herokuapp.com/allorders?email=${user.email}`
@@ -72,6 +73,9 @@ const AllOrders = () => {
                                 Phone Number
                             </TableCell>
                             <TableCell align="center" sx={{ color: 'MidnightBlue', fontWeight: 700 }}>
+                                Payment Status
+                            </TableCell>
+                            <TableCell align="center" sx={{ color: 'MidnightBlue', fontWeight: 700 }}>
                             </TableCell>
                         </TableRow>
                     </TableHead>
@@ -88,6 +92,13 @@ const AllOrders = () => {
                                 </TableCell>
                                 <TableCell align="center">
                                     {product.phone}
+                                </TableCell>
+                                <TableCell align="center">
+                                    {product.payment ?
+                                        <p style={{ color: 'Green', fontWeight: 'bold' }}>Paid</p>
+                                        :
+                                        <p style={{ color: 'red', fontWeight: 'bold' }}>Unpaid</p>
+                                    }
                                 </TableCell>
                                 <TableCell align="center">
                                     <Button onClick={() => handleDeleting(product._id)} variant="contained">Delete</Button>
