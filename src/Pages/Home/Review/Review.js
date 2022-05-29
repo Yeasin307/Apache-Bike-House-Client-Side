@@ -8,7 +8,7 @@ const Review = ({ review }) => {
             <Paper style={{ padding: '10px', textAlign: 'center' }} elevation={3} >
                 <img style={{ width: '40%', height: '120px', borderRadius: '100%' }} src={`data:image/png;base64,${review.img}`} alt="" />
                 <Typography sx={{ fontSize: 18, fontWeight: 'bold', mt: 1 }}>{review.name}</Typography>
-                <Rating sx={{ my: 1.5, display: 'flex', justifyContent: 'center' }} value={review.rating} precision={0.5} readOnly />
+                <Rating sx={{ my: 1.5, display: 'flex', justifyContent: 'center' }} value={parseFloat(review.rating)} precision={0.5} readOnly />
                 <Typography sx={{ fontSize: 18 }}>Comment : {review.comment}</Typography>
             </Paper>
         </Grid>

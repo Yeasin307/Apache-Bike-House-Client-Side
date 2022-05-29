@@ -91,6 +91,16 @@ const useFirebase = () => {
     }, [user.email])
 
 
+    // useEffect(() => {
+    //     async function getAdmin() {
+    //         const res = await fetch(`https://secure-inlet-19520.herokuapp.com/users/${user.email}`);
+    //         const data = await res.json();
+    //         setAdmin(data.admin);
+    //     }
+    //     getAdmin();
+    // }, [user.email])
+
+
     const saveUser = (email, displayName, method) => {
         const user = { email, displayName };
         fetch('https://secure-inlet-19520.herokuapp.com/users', {

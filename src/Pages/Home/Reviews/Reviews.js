@@ -7,9 +7,19 @@ const Reviews = () => {
     const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
+        let isMounted = true;
+
         fetch('https://secure-inlet-19520.herokuapp.com/reviews')
             .then(res => res.json())
-            .then(data => setReviews(data));
+            .then(data => {
+                if (isMounted) {
+                    setReviews(data);
+                }
+            });
+
+        return () => {
+            isMounted = false;
+        };
     }, [])
 
     return (

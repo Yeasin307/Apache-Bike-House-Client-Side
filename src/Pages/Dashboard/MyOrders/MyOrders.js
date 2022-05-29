@@ -16,6 +16,8 @@ const MyOrders = () => {
     const history = useHistory();
 
     useEffect(() => {
+        let isMounted = true;
+
         const url = `https://secure-inlet-19520.herokuapp.com/orders?email=${user.email}`
         fetch(url, {
             headers: {
@@ -31,7 +33,15 @@ const MyOrders = () => {
                     history.push('/login');
                 }
             })
-            .then(data => setOrders(data));
+            .then(data => {
+                if (isMounted) {
+                    setOrders(data);
+                }
+            });
+
+        return () => {
+            isMounted = false;
+        };
     }, [history, logout, user.email])
 
 

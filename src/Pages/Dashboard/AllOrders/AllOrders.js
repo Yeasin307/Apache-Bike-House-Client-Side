@@ -14,9 +14,10 @@ const AllOrders = () => {
     const { user, logout } = useAuth();
     const [orders, setOrders] = useState([]);
     const history = useHistory();
-    console.log(orders);
 
     useEffect(() => {
+        let abortController = new AbortController();
+
         const url = `https://secure-inlet-19520.herokuapp.com/allorders?email=${user.email}`
         fetch(url, {
             headers: {
@@ -33,6 +34,10 @@ const AllOrders = () => {
                 }
             })
             .then(data => setOrders(data));
+
+        return () => {
+            abortController.abort();
+        }
     }, [history, logout, user.email])
 
 

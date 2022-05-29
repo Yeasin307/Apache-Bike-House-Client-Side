@@ -10,9 +10,19 @@ const TopProducts = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
+        let isMounted = true;
+
         fetch('https://secure-inlet-19520.herokuapp.com/explore')
             .then(res => res.json())
-            .then(data => setProducts(data));
+            .then(data => {
+                if (isMounted) {
+                    setProducts(data);
+                }
+            });
+
+        return () => {
+            isMounted = false;
+        };
     }, [])
     return (
         <Box>
